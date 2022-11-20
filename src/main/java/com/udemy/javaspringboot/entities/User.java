@@ -1,30 +1,29 @@
 package com.udemy.javaspringboot.entities;
 
-
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
+@Table(name = "tbl_user")
 public class User implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String email;
     private String phone;
     private String password;
 
-    private List<Order> orders;
-
     public User(){}
 
-    public User(Long id, String name, String email, String phone, String password, List<Order> orders) {
+    public User(Long id, String name, String email, String phone, String password) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.phone = phone;
         this.password = password;
-        this.orders = orders;
     }
 
     public Long getId() {
@@ -67,10 +66,6 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public List<Order> getOrders() {
-        return orders;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -83,7 +78,5 @@ public class User implements Serializable {
     public int hashCode() {
         return Objects.hash(id);
     }
-
-
 
 }
