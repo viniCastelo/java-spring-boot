@@ -1,8 +1,12 @@
 package com.udemy.javaspringboot.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "tbl_category")
@@ -12,6 +16,10 @@ public class Category implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "categories")
+    private Set<Product> products = new HashSet<>();
 
     public Category(){}
 
@@ -26,6 +34,10 @@ public class Category implements Serializable {
 
     public String getName() {
         return name;
+    }
+
+    public Set<Product> getProducts(){
+        return products;
     }
 
     public void setId(Long id) {
