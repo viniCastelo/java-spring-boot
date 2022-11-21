@@ -1,8 +1,10 @@
 package com.udemy.javaspringboot.config;
 
+import com.udemy.javaspringboot.entities.Category;
 import com.udemy.javaspringboot.entities.Order;
 import com.udemy.javaspringboot.entities.User;
 import com.udemy.javaspringboot.entities.enums.OrderStatus;
+import com.udemy.javaspringboot.repositories.CategoryRepository;
 import com.udemy.javaspringboot.repositories.OrderRepository;
 import com.udemy.javaspringboot.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,9 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     private OrderRepository orderRepository;
 
+    @Autowired
+    private CategoryRepository categoryRepository;
+
     @Override
     public void run(String... args) throws Exception {
         User u1 = new User(null, "Vinícius", "vkstello@gmail.com", "(87) 99975-4035)", "123");
@@ -32,7 +37,12 @@ public class TestConfig implements CommandLineRunner {
         Order o2 = new Order(null, Instant.parse("2022-07-21T03:42:10Z"), OrderStatus.WAITING_PAYMENT, u2);
         Order o3 = new Order(null, Instant.parse("2022-07-22T15:21:22Z"), OrderStatus.WAITING_PAYMENT, u1);
 
+        Category ctg1 = new Category(null, "Electronics");
+        Category ctg2 = new Category(null, "Books");
+        Category ctg3 = new Category(null, "Computers");
+
         userRepository.saveAll(Arrays.asList(u1,u2));
         orderRepository.saveAll(Arrays.asList(o1,o2,o3));
+        categoryRepository.saveAll(Arrays.asList(ctg1,ctg2,ctg3));
     }
 }
