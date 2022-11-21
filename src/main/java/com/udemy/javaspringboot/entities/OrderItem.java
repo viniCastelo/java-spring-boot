@@ -1,5 +1,6 @@
 package com.udemy.javaspringboot.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.udemy.javaspringboot.entities.pk.OrderItemPK;
 
 import javax.persistence.EmbeddedId;
@@ -13,7 +14,7 @@ import java.util.*;
 public class OrderItem implements Serializable {
 
     @EmbeddedId
-    private OrderItemPK id;
+    private OrderItemPK id = new OrderItemPK();
     private Integer quantity;
     private Double price;
 
@@ -34,6 +35,7 @@ public class OrderItem implements Serializable {
         return price;
     }
 
+    @JsonIgnore
     public Order getOrder(){
         return id.getOrder();
     }
