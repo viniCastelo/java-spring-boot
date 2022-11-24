@@ -1,6 +1,7 @@
 package com.udemy.javaspringboot.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -34,10 +35,6 @@ public class Category implements Serializable {
 
     public String getName() {
         return name;
-    }
-
-    public Set<Product> getProducts(){
-        return products;
     }
 
     public void setId(Long id) {

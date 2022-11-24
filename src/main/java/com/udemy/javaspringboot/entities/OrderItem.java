@@ -7,7 +7,7 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.io.Serializable;
-import java.util.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "tbl_order_item")
@@ -21,8 +21,8 @@ public class OrderItem implements Serializable {
     public OrderItem(){}
 
     public OrderItem(Order order, Product product, Integer quantity, Double price) {
-        id.setOrder(order);
         id.setProduct(product);
+        id.setOrder(order);
         this.quantity = quantity;
         this.price = price;
     }
@@ -52,16 +52,16 @@ public class OrderItem implements Serializable {
         this.price = price;
     }
 
-    public void setOrder(Order order){
+    public void setOrder (Order order){
         id.setOrder(order);
     }
 
-    public void setProduct(Product product){
+    public void setProduct (Product product){
         id.setProduct(product);
     }
 
     public Double subTotal(){
-        return price * quantity;
+        return getPrice() * getQuantity();
     }
 
     @Override
