@@ -66,6 +66,14 @@ public class Order implements Serializable {
         return payment;
     }
 
+    public Double getTotal(){
+        Double total = 0.0;
+        for (OrderItem oi : items){
+            total += oi.getSubTotal();
+        }
+        return total;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
